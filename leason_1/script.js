@@ -20,4 +20,4 @@ typeDate = questionTwo;
 
 appData.expenses[moneyData] = typeDate;
 
-alert('Бюджет на один день'+ payment);
+alert('Бюджет на один день' + payment);
