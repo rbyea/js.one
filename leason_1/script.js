@@ -1,10 +1,11 @@
-'use strict'
+'use strict';
 
-let money = prompt("Ваш бюджет на месяц?");
-let time = prompt("Введите дату в формате YYYY-MM-DD");
-let questionOne = prompt("Введите обязательную статью расходов в этом месяце");
-let questionTwo = prompt("Во сколько обойдется");
-let payment = money/30;
+let money = prompt("Ваш бюджет на месяц?"),
+		time = prompt("Введите дату в формате YYYY-MM-DD"),
+		questionOne = prompt("Введите обязательную статью расходов в этом месяце"),
+		questionTwo = prompt("Во сколько обойдется"),
+		questionThree = prompt("Введите обязательную статью расходов в этом месяце"),
+		questionFour = prompt("Во сколько обойдется");
 
 let appData = {
 	budjet: money,
@@ -15,9 +16,9 @@ let appData = {
 	saving: false
 };
 
-let moneyData = questionOne,
-typeDate = questionTwo;
+appData.expenses[questionOne] = questionTwo;
+appData.expenses[questionThree] = questionFour;
 
-appData.expenses[moneyData] = typeDate;
+console.log(appData);
 
-alert('Бюджет на один день' + payment);
+alert('Бюджет на один день' + money/30);
