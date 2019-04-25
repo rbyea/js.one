@@ -17,6 +17,9 @@ for (let i = 0; i < week.length; i++) {
 //чета мне кажется, что это не верное :D
 
 let arr = ['333', '322', '444', '876', '777', '554', '244'];
-	arr.splice(2);
 
-console.log(arr);
+arr.forEach((item) => {
+	if (item.startsWith('3') || item.startsWith('7')) {
+		console.log(item);
+	}
+});
