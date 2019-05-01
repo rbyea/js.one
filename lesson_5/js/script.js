@@ -5,9 +5,8 @@ let btn = document.getElementsByClassName('menu-item'),
 		menu = document.querySelector('.menu'),
 		advert = document.querySelector('.adv'),
 		columns = document.getElementsByClassName('column'),
-		question = prompt('Как вы относитесь к технике apple ?', ''),
-		questionText = document.getElementById('prompt'),
 		titles = document.getElementById('title');
+
 
 list.classList.add('menu-item');
 list.textContent = 'Пятый пункт';
@@ -20,4 +19,8 @@ columns[1].removeChild(advert);
 
 document.body.style.background = 'url("img/apple_true.jpg")';
 
-questionText.textContent = `${question}`;
+window.onload = function () {
+	let questionText = document.getElementById('prompt');
+	question = prompt('Как вы относитесь к технике apple ?', ''),
+		questionText.textContent = `${question}`;
+};
