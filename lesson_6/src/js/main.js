@@ -10,7 +10,7 @@ let btnStart = document.getElementById('start'),
 		monthValue = document.getElementsByClassName('monthsavings-value')[0],
 		yearValue = document.getElementsByClassName('yearsavings-value')[0],
 
-		inputList = document.getElementsByClassName('expenses-item'),
+		inputList = document.querySelectorAll('.expenses-item'),
 		expensesBtn = document.getElementsByTagName('button')[0],
 		optionalExpensesBtn = document.getElementsByTagName("button")[1],
 		countBtn = document.getElementsByTagName("button")[2],
@@ -23,6 +23,15 @@ let btnStart = document.getElementById('start'),
 		monthsValue = document.querySelector(".month-value"),
 		dayValue = document.querySelector(".day-value");
 
+for (let i = 0; i < inputList.length; i++) {
+	console.log(inputList[0].value.length);
+	inputList[i].addEventListener('input', function () {
+		if (inputList[0].value.length > 0 && inputList[1].value.length > 0 && inputList[2].value.length > 0 && inputList[3].value.length > 0) {
+			expensesBtn.disabled = false;
+			console.log(1);
+		}
+	});
+}
 
 //старт первой функции :D
 let money, time, sum;
@@ -50,12 +59,28 @@ btnStart.addEventListener('click', function() {
 	countBtn.disabled = false;
 });
 
+let count = 0;
+let expensesInput = document.querySelectorAll('.expenses-item');
+
+expensesInput.forEach(function (element) {
+	element.addEventListener('change', function () {
+		if (element.value != '') {
+			count = count + 1;
+			appData.count = count;
+		}
+		if (appData.count == expensesInput.length) {
+			appData.inputsOk = true;
+			count = 0;
+		}
+	});
+});
+
 expensesBtn.addEventListener('click', function() {
 	sum = 0;
 
 	for (let i = 0; i < inputList.length; i++) {
 		let a = inputList[i].value,
-			b = inputList[++i].value;
+				b = inputList[++i].value;
 
 		if ((typeof (a)) === 'string' && (typeof (a)) != null && (typeof (b)) != null
 			&& a != '' && b != '' && a.length < 50) {
@@ -63,7 +88,6 @@ expensesBtn.addEventListener('click', function() {
 			appData.expenses[a] = b;
 			sum += +b;
 		} else if (a || b === null && a || b === '' && a || b != true) {
-			
 			i--;
 		}
 	}
@@ -79,7 +103,7 @@ optionalExpensesBtn.addEventListener('click', function(){
 });
 
 countBtn.addEventListener('click', function(){
-	
+
 	if(appData.budjet != undefined) {
 		appData.moneyPerDay = ((appData.budjet - sum)/30).toFixed();
 		btnDayBudget.textContent = appData.moneyPerDay;
@@ -150,4 +174,14 @@ let appData = {
 
 for (let key in appData) {
 	console.log("Наша программа включает в себя данные:" + key + appData);
+}
+
+console.log(optionalExpensesItem);
+
+for (let i = 0; i < optionalExpensesItem.length; i++) {
+	optionalExpensesItem[i].addEventListener('input', function(){
+		if (optionalExpensesItem[0].value.length > 0 && optionalExpensesItem[1].value.length > 0 && optionalExpensesItem[2].value.length > 0){
+			optionalExpensesBtn.disabled = false;
+		}
+	});
 }
