@@ -1,6 +1,11 @@
+'use strict';
+
+let age = document.getElementById('age');
+
 function showUser(surname, name) {
-	let age = document.getElementsByTagName('input');
-	alert("Пользователь " + surname + " " + name + ", его возраст " + this.age.value);
+	alert("Пользователь " + surname + " " + name + ", его возраст " + this.value);
 }
 
-showUser('Новиков', 'Егор');
+age.addEventListener('blur', function () {
+	showUser.call(age, 'Новиков', 'Егор');
+});
